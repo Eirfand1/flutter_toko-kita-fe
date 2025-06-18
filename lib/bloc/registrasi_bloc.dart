@@ -10,12 +10,19 @@ class RegistrasiBloc {
     String? email,
     String? password,
   }) async {
+    try{
     String apiUrl = ApiUrl.registrasi;
 
     var body = {"nama": nama, "email": email, "password": password};
 
     var response = await Api().post(apiUrl, body);
     var jsonObj = json.decode(response.body);
-    return Registrasi.fromJson(jsonObj);
+    return Registrasi.fromJson(jsonObj);  
+    }
+    catch(e) {
+      print('error RegisBloc : $e');
+      rethrow;
+    }
+    
   }
 }
